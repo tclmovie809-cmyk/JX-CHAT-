@@ -1,1 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JX CHAT</title>
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #05051a;
+      color: white;
+      overflow: hidden;
+    }
+
+    .screen {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: auto;
+      position: relative;
+      background:
+        radial-gradient(circle at 10% 5%, #4b20d8, transparent 30%),
+        radial-gradient(circle at 90% 90%, #3020c9, transparent 35%),
+        linear-gradient(145deg, #08082b, #090018);
+    }
+
+    /* SPLASH SCREEN */
+
+    #splash {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 58px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #d52cff, #613cff, #00cfff);
+      box-shadow: 0 0 25px #8b35ff, 0 0 60px #4433ff;
+      margin-bottom: 28px;
+    }
+
+    .name {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .name span {
+      background: linear-gradient(90deg, #d52cff, #00cfff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      margin-top: 12px;
+      color: #c9c9e8;
+      font-size: 15px;
+      letter-spacing: 3px;
+    }
+
+    .start {
+      position: absolute;
+      bottom: 100px;
+      width: 72%;
+      padding: 17px;
+      border: none;
+      border-radius: 40px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #a719ff, #244cff, #00bfff);
+      box-shadow: 0 0 25px #6c36ff;
+    }
+
+    /* LOGIN SCREEN */
+
+    #login {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      padding: 35px;
+    }
+
+    .login-logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px;
+      font-size: 35px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #d52cff, #613cff, #00cfff);
+      box-shadow: 0 0 30px #713cff;
+    }
+
+    .login-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      color: #aaaac8;
+      margin-bottom: 35px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #37375f;
+      border-radius: 14px;
+      outline: none;
+      background: #11112f;
+      color: white;
+      font-size: 16px;
+    }
+
+    .input:focus {
+      border-color: #9a3cff;
+      box-shadow: 0 0 10px #5d32ff;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 16px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(90deg, #a719ff, #244cff, #00bfff);
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .create {
+      text-align: center;
+      margin-top: 25px;
+      color: #b9b9d8;
+    }
+
+    .create span {
+      color: #b83cff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .back {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      color: #aaaac8;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SPLASH -->
+  <div id="splash" class="screen">
+
+    <div class="logo">JX</div>
+
+    <div class="name">
+      <span>JX</span> CHAT
+    </div>
+
+    <div class="tagline">
+      Connect. Chat. Share.
+    </div>
+
+    <button class="start" onclick="openLogin()">
+      START →
+    </button>
+
+  </div>
+
+
+  <!-- LOGIN -->
+  <div id="login" class="screen">
+
+    <div class="back" onclick="goBack()">
+      ← Back
+    </div>
+
+    <div class="login-logo">
+      JX
+    </div>
+
+    <h1 class="login-title">
+      Welcome to JX CHAT
+    </h1>
+
+    <p class="login-subtitle">
+      Login to continue chatting
+    </p>
+
+    <input
+      class="input"
+      type="text"
+      placeholder="Username"
+    >
+
+    <input
+      class="input"
+      type="password"
+      placeholder="Password"
+    >
+
+    <button class="login-btn" onclick="login()">
+      LOGIN
+    </button>
+
+    <div class="create">
+      Don't have an account?
+      <span onclick="createAccount()">Create Account</span>
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function openLogin() {
+      document.getElementById("splash").style.display = "none";
+      document.getElementById("login").style.display = "flex";
+    }
+
+    function goBack() {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("splash").style.display = "flex";
+    }
+
+    function login() {
+      alert("JX CHAT LOGIN 💜💙");
+    }
+
+    function createAccount() {
+      alert("Create Account screen coming next! 🔥");
+    }
+
+  </script>
+
+</body>
+</html>
