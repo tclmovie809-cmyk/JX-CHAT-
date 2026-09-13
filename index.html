@@ -32,7 +32,9 @@
         linear-gradient(145deg, #08082b, #090018);
     }
 
-    /* SPLASH SCREEN */
+    /* =========================
+       SPLASH SCREEN
+    ========================= */
 
     #splash {
       display: flex;
@@ -90,9 +92,12 @@
       box-shadow: 0 0 25px #6c36ff;
     }
 
-    /* LOGIN SCREEN */
+    /* =========================
+       LOGIN + REGISTER
+    ========================= */
 
-    #login {
+    #login,
+    #register {
       display: none;
       flex-direction: column;
       justify-content: center;
@@ -137,6 +142,10 @@
       font-size: 16px;
     }
 
+    .input::placeholder {
+      color: #77779c;
+    }
+
     .input:focus {
       border-color: #9a3cff;
       box-shadow: 0 0 10px #5d32ff;
@@ -153,6 +162,11 @@
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    .login-btn:active,
+    .start:active {
+      transform: scale(0.98);
     }
 
     .create {
@@ -175,12 +189,81 @@
       cursor: pointer;
       font-size: 16px;
     }
+
+    .message {
+      text-align: center;
+      margin-top: 22px;
+      color: #b9b9d8;
+      font-size: 14px;
+    }
+
+    .message span {
+      color: #b83cff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* =========================
+       CREATE ACCOUNT SCREEN
+    ========================= */
+
+    #register {
+      padding-top: 25px;
+    }
+
+    #register .login-logo {
+      width: 75px;
+      height: 75px;
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    #register .login-title {
+      font-size: 30px;
+    }
+
+    #register .login-subtitle {
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-height: 700px) {
+
+      #register {
+        justify-content: flex-start;
+        padding-top: 70px;
+      }
+
+      #register .login-logo {
+        margin-bottom: 12px;
+      }
+
+      #register .login-subtitle {
+        margin-bottom: 15px;
+      }
+
+      .input {
+        padding: 13px;
+        margin-bottom: 10px;
+      }
+
+      .login-btn {
+        padding: 14px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <!-- SPLASH -->
+  <!-- =========================
+       SPLASH SCREEN
+  ========================= -->
+
   <div id="splash" class="screen">
 
     <div class="logo">JX</div>
@@ -200,7 +283,10 @@
   </div>
 
 
-  <!-- LOGIN -->
+  <!-- =========================
+       LOGIN SCREEN
+  ========================= -->
+
   <div id="login" class="screen">
 
     <div class="back" onclick="goBack()">
@@ -220,12 +306,14 @@
     </p>
 
     <input
+      id="loginUsername"
       class="input"
       type="text"
       placeholder="Username"
     >
 
     <input
+      id="loginPassword"
       class="input"
       type="password"
       placeholder="Password"
@@ -237,30 +325,190 @@
 
     <div class="create">
       Don't have an account?
-      <span onclick="createAccount()">Create Account</span>
+      <span onclick="openCreateAccount()">Create Account</span>
     </div>
 
   </div>
 
 
+  <!-- =========================
+       CREATE ACCOUNT SCREEN
+  ========================= -->
+
+  <div id="register" class="screen">
+
+    <div class="back" onclick="backToLogin()">
+      ← Back
+    </div>
+
+    <div class="login-logo">
+      JX
+    </div>
+
+    <h1 class="login-title">
+      Create Account
+    </h1>
+
+    <p class="login-subtitle">
+      Join JX CHAT today
+    </p>
+
+    <input
+      id="registerUsername"
+      class="input"
+      type="text"
+      placeholder="Username"
+    >
+
+    <input
+      id="registerEmail"
+      class="input"
+      type="email"
+      placeholder="Email"
+    >
+
+    <input
+      id="registerPassword"
+      class="input"
+      type="password"
+      placeholder="Password"
+    >
+
+    <input
+      id="registerConfirm"
+      class="input"
+      type="password"
+      placeholder="Confirm Password"
+    >
+
+    <button class="login-btn" onclick="createAccount()">
+      CREATE ACCOUNT
+    </button>
+
+    <div class="message">
+      Already have an account?
+      <span onclick="backToLogin()">Login</span>
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
   <script>
+
+    /* SPLASH → LOGIN */
 
     function openLogin() {
       document.getElementById("splash").style.display = "none";
+      document.getElementById("register").style.display = "none";
       document.getElementById("login").style.display = "flex";
     }
 
+
+    /* LOGIN → SPLASH */
+
     function goBack() {
       document.getElementById("login").style.display = "none";
+      document.getElementById("register").style.display = "none";
       document.getElementById("splash").style.display = "flex";
     }
 
-    function login() {
-      alert("JX CHAT LOGIN 💜💙");
+
+    /* LOGIN → CREATE ACCOUNT */
+
+    function openCreateAccount() {
+      document.getElementById("splash").style.display = "none";
+      document.getElementById("login").style.display = "none";
+      document.getElementById("register").style.display = "flex";
     }
 
+
+    /* CREATE ACCOUNT → LOGIN */
+
+    function backToLogin() {
+      document.getElementById("register").style.display = "none";
+      document.getElementById("login").style.display = "flex";
+    }
+
+
+    /* LOGIN BUTTON */
+
+    function login() {
+
+      const username =
+        document.getElementById("loginUsername").value;
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+      if (username === "" || password === "") {
+        alert("Please enter your username and password.");
+        return;
+      }
+
+      alert("JX CHAT LOGIN 💜💙");
+
+    }
+
+
+    /* CREATE ACCOUNT BUTTON */
+
     function createAccount() {
-      alert("Create Account screen coming next! 🔥");
+
+      const username =
+        document.getElementById("registerUsername").value.trim();
+
+      const email =
+        document.getElementById("registerEmail").value.trim();
+
+      const password =
+        document.getElementById("registerPassword").value;
+
+      const confirmPassword =
+        document.getElementById("registerConfirm").value;
+
+
+      /* CHECK EMPTY FIELDS */
+
+      if (
+        username === "" ||
+        email === "" ||
+        password === "" ||
+        confirmPassword === ""
+      ) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+
+      /* CHECK PASSWORD */
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+
+      /* CHECK PASSWORD LENGTH */
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+
+      /* TEMPORARY SUCCESS */
+
+      alert(
+        "Account form completed! 💜💙\n\n" +
+        "Username: " + username +
+        "\nEmail: " + email +
+        "\n\nDatabase connection will be added next."
+      );
+
     }
 
   </script>
