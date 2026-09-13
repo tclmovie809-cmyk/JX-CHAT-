@@ -1067,4 +1067,50 @@
        PROFILE
     ========================= */
 
-    function openPro
+    function openProfile() {
+
+      const username =
+        localStorage.getItem("jxUsername") || "JX User";
+
+      alert(
+        "JX CHAT PROFILE 👤\n\n" +
+        "Username: " + username
+      );
+
+    }
+
+
+    /* =========================
+       BOTTOM NAV
+    ========================= */
+
+    function homeNav() {
+
+      alert("You are already on Home 💬");
+
+    }
+
+
+    function friendsNav() {
+
+      alert(
+        "FRIENDS 👥\n\n" +
+        "Friends system will be added next."
+      );
+
+    }
+
+
+    function settingsNav() {
+
+      alert(
+        "SETTINGS ⚙️\n\n" +
+        "Settings will be added next."
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
