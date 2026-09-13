@@ -93,7 +93,7 @@
     }
 
     /* =========================
-       LOGIN + CREATE ACCOUNT
+       LOGIN + REGISTER
     ========================= */
 
     #login,
@@ -166,7 +166,8 @@
     }
 
     .login-btn:active,
-    .start:active {
+    .start:active,
+    .new-chat:active {
       transform: scale(0.98);
     }
 
@@ -186,10 +187,6 @@
       font-size: inherit;
       font-weight: bold;
       cursor: pointer;
-    }
-
-    .create-link:hover {
-      text-decoration: underline;
     }
 
     .back {
@@ -221,7 +218,7 @@
     }
 
     /* =========================
-       CREATE ACCOUNT SCREEN
+       CREATE ACCOUNT
     ========================= */
 
     #register {
@@ -241,6 +238,208 @@
 
     #register .login-subtitle {
       margin-bottom: 22px;
+    }
+
+    /* =========================
+       HOME SCREEN
+    ========================= */
+
+    #home {
+      display: none;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .home-header {
+      padding: 28px 20px 15px;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      background: linear-gradient(90deg, #d52cff, #00cfff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .profile-button {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 1px solid #8c4cff;
+      background: linear-gradient(135deg, #a719ff, #244cff);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #713cff;
+    }
+
+    .welcome {
+      margin-top: 8px;
+      color: #aaaac8;
+      font-size: 14px;
+    }
+
+    .search-box {
+      margin: 10px 20px 15px;
+      display: flex;
+      align-items: center;
+      background: #11112f;
+      border: 1px solid #37375f;
+      border-radius: 15px;
+      padding: 0 15px;
+    }
+
+    .search-icon {
+      font-size: 18px;
+      color: #9999bd;
+      margin-right: 8px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: white;
+      font-size: 15px;
+    }
+
+    .search-input::placeholder {
+      color: #77779c;
+    }
+
+    .chat-area {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 12px 100px;
+    }
+
+    .section-title {
+      padding: 8px 8px 12px;
+      color: #aaaac8;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .chat-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 8px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .chat-item:hover {
+      background: rgba(130, 60, 255, 0.15);
+    }
+
+    .avatar {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #d52cff, #613cff, #00cfff);
+      font-size: 19px;
+      font-weight: bold;
+      position: relative;
+      box-shadow: 0 0 12px rgba(120, 60, 255, 0.5);
+    }
+
+    .online {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #25e67a;
+      border: 3px solid #0b0b28;
+      right: 0;
+      bottom: 1px;
+    }
+
+    .chat-info {
+      flex: 1;
+      min-width: 0;
+      margin-left: 13px;
+    }
+
+    .chat-name {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .last-message {
+      color: #9999bb;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chat-time {
+      color: #77779c;
+      font-size: 11px;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    .new-chat {
+      position: absolute;
+      right: 20px;
+      bottom: 80px;
+      width: 58px;
+      height: 58px;
+      border: none;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d52cff, #244cff, #00bfff);
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 25px #713cff;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: rgba(7, 7, 31, 0.96);
+      border-top: 1px solid #292955;
+    }
+
+    .nav-button {
+      background: none;
+      border: none;
+      color: #8585a9;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .nav-button.active {
+      color: #bd45ff;
+      text-shadow: 0 0 12px #9c36ff;
     }
 
     /* =========================
@@ -269,6 +468,10 @@
 
       .login-btn {
         padding: 14px;
+      }
+
+      .home-header {
+        padding-top: 18px;
       }
     }
 
@@ -358,7 +561,7 @@
 
 
   <!-- =========================
-       CREATE ACCOUNT SCREEN
+       CREATE ACCOUNT
   ========================= -->
 
   <div id="register" class="screen">
@@ -434,6 +637,196 @@
 
 
   <!-- =========================
+       HOME SCREEN
+  ========================= -->
+
+  <div id="home" class="screen">
+
+    <div class="home-header">
+
+      <div class="top-row">
+
+        <div class="brand">
+          <span>JX</span> CHAT
+        </div>
+
+        <button
+          class="profile-button"
+          onclick="openProfile()"
+        >
+          JX
+        </button>
+
+      </div>
+
+      <div class="welcome">
+        Welcome back 👋
+      </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+      <div class="search-icon">
+        🔎
+      </div>
+
+      <input
+        id="searchInput"
+        class="search-input"
+        type="text"
+        placeholder="Search chats..."
+        oninput="searchChats()"
+      >
+
+    </div>
+
+
+    <!-- CHAT LIST -->
+
+    <div class="chat-area">
+
+      <div class="section-title">
+        RECENT CHATS
+      </div>
+
+
+      <div
+        class="chat-item"
+        data-name="JX Friend"
+        onclick="openChat('JX Friend')"
+      >
+
+        <div class="avatar">
+          JF
+          <div class="online"></div>
+        </div>
+
+        <div class="chat-info">
+
+          <div class="chat-name">
+            JX Friend
+          </div>
+
+          <div class="last-message">
+            Hey! Welcome to JX CHAT 💜
+          </div>
+
+        </div>
+
+        <div class="chat-time">
+          Now
+        </div>
+
+      </div>
+
+
+      <div
+        class="chat-item"
+        data-name="John"
+        onclick="openChat('John')"
+      >
+
+        <div class="avatar">
+          JO
+          <div class="online"></div>
+        </div>
+
+        <div class="chat-info">
+
+          <div class="chat-name">
+            John
+          </div>
+
+          <div class="last-message">
+            See you later!
+          </div>
+
+        </div>
+
+        <div class="chat-time">
+          5m
+        </div>
+
+      </div>
+
+
+      <div
+        class="chat-item"
+        data-name="JX Team"
+        onclick="openChat('JX Team')"
+      >
+
+        <div class="avatar">
+          JT
+        </div>
+
+        <div class="chat-info">
+
+          <div class="chat-name">
+            JX Team
+          </div>
+
+          <div class="last-message">
+            Welcome to the group
+          </div>
+
+        </div>
+
+        <div class="chat-time">
+          1h
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- NEW CHAT -->
+
+    <button
+      class="new-chat"
+      onclick="newChat()"
+    >
+      +
+    </button>
+
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+      <button
+        class="nav-button active"
+        onclick="homeNav()"
+      >
+        💬
+      </button>
+
+      <button
+        class="nav-button"
+        onclick="friendsNav()"
+      >
+        👥
+      </button>
+
+      <button
+        class="nav-button"
+        onclick="settingsNav()"
+      >
+        ⚙️
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
        JAVASCRIPT
   ========================= -->
 
@@ -447,6 +840,7 @@
 
       document.getElementById("splash").style.display = "none";
       document.getElementById("register").style.display = "none";
+      document.getElementById("home").style.display = "none";
       document.getElementById("login").style.display = "flex";
 
     }
@@ -460,6 +854,7 @@
 
       document.getElementById("login").style.display = "none";
       document.getElementById("register").style.display = "none";
+      document.getElementById("home").style.display = "none";
       document.getElementById("splash").style.display = "flex";
 
     }
@@ -473,6 +868,7 @@
 
       document.getElementById("splash").style.display = "none";
       document.getElementById("login").style.display = "none";
+      document.getElementById("home").style.display = "none";
       document.getElementById("register").style.display = "flex";
 
       window.scrollTo(0, 0);
@@ -487,13 +883,14 @@
     function backToLogin() {
 
       document.getElementById("register").style.display = "none";
+      document.getElementById("home").style.display = "none";
       document.getElementById("login").style.display = "flex";
 
     }
 
 
     /* =========================
-       LOGIN
+       LOGIN → HOME
     ========================= */
 
     function login() {
@@ -511,7 +908,19 @@
         return;
       }
 
-      alert("JX CHAT LOGIN 💜💙");
+      /* SAVE TEMPORARY USERNAME */
+
+      localStorage.setItem("jxUsername", username);
+
+      /* OPEN HOME */
+
+      document.getElementById("login").style.display = "none";
+      document.getElementById("register").style.display = "none";
+      document.getElementById("splash").style.display = "none";
+      document.getElementById("home").style.display = "flex";
+
+      document.querySelector(".welcome").textContent =
+        "Welcome back, " + username + " 👋";
 
     }
 
@@ -535,8 +944,6 @@
         document.getElementById("registerConfirm").value;
 
 
-      /* EMPTY FIELDS */
-
       if (
         username === "" ||
         email === "" ||
@@ -550,8 +957,6 @@
       }
 
 
-      /* EMAIL CHECK */
-
       if (!email.includes("@")) {
 
         alert("Please enter a valid email address.");
@@ -559,8 +964,6 @@
         return;
       }
 
-
-      /* PASSWORD MATCH */
 
       if (password !== confirmPassword) {
 
@@ -570,8 +973,6 @@
       }
 
 
-      /* PASSWORD LENGTH */
-
       if (password.length < 6) {
 
         alert("Password must be at least 6 characters.");
@@ -580,19 +981,90 @@
       }
 
 
-      /* TEMPORARY SUCCESS */
+      /* SAVE USERNAME FOR PROTOTYPE */
+
+      localStorage.setItem("jxUsername", username);
 
       alert(
-        "Account form completed! 💜💙\n\n" +
-        "Username: " + username +
-        "\nEmail: " + email +
-        "\n\nThis is still a prototype.\n" +
-        "Real account saving will be connected next."
+        "Account created successfully! 💜💙\n\n" +
+        "Welcome to JX CHAT, " + username + "!"
+      );
+
+
+      /* GO TO LOGIN */
+
+      document.getElementById("register").style.display = "none";
+      document.getElementById("login").style.display = "flex";
+
+      document.getElementById("loginUsername").value = username;
+
+    }
+
+
+    /* =========================
+       SEARCH CHATS
+    ========================= */
+
+    function searchChats() {
+
+      const search =
+        document.getElementById("searchInput").value.toLowerCase();
+
+      const chats =
+        document.querySelectorAll(".chat-item");
+
+      chats.forEach(function(chat) {
+
+        const name =
+          chat.getAttribute("data-name").toLowerCase();
+
+        if (name.includes(search)) {
+
+          chat.style.display = "flex";
+
+        } else {
+
+          chat.style.display = "none";
+
+        }
+
+      });
+
+    }
+
+
+    /* =========================
+       CHAT
+    ========================= */
+
+    function openChat(name) {
+
+      alert(
+        "Opening chat with " +
+        name +
+        " 💬\n\n" +
+        "Real messaging will be added next."
       );
 
     }
 
-  </script>
 
-</body>
-</html>
+    /* =========================
+       NEW CHAT
+    ========================= */
+
+    function newChat() {
+
+      alert(
+        "NEW CHAT ➕\n\n" +
+        "The real friend/user search will be connected next."
+      );
+
+    }
+
+
+    /* =========================
+       PROFILE
+    ========================= */
+
+    function openPro
