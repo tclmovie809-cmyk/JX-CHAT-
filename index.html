@@ -93,7 +93,7 @@
     }
 
     /* =========================
-       LOGIN + REGISTER
+       LOGIN + CREATE ACCOUNT
     ========================= */
 
     #login,
@@ -162,6 +162,7 @@
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
+      box-shadow: 0 0 15px rgba(111, 50, 255, 0.35);
     }
 
     .login-btn:active,
@@ -173,12 +174,22 @@
       text-align: center;
       margin-top: 25px;
       color: #b9b9d8;
+      font-size: 15px;
     }
 
-    .create span {
+    .create-link {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 4px;
       color: #b83cff;
+      font-size: inherit;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    .create-link:hover {
+      text-decoration: underline;
     }
 
     .back {
@@ -188,6 +199,7 @@
       color: #aaaac8;
       cursor: pointer;
       font-size: 16px;
+      z-index: 10;
     }
 
     .message {
@@ -197,10 +209,15 @@
       font-size: 14px;
     }
 
-    .message span {
+    .message button {
+      background: none;
+      border: none;
       color: #b83cff;
+      font-size: inherit;
       font-weight: bold;
       cursor: pointer;
+      padding: 0;
+      margin-left: 3px;
     }
 
     /* =========================
@@ -310,6 +327,7 @@
       class="input"
       type="text"
       placeholder="Username"
+      autocomplete="username"
     >
 
     <input
@@ -317,6 +335,7 @@
       class="input"
       type="password"
       placeholder="Password"
+      autocomplete="current-password"
     >
 
     <button class="login-btn" onclick="login()">
@@ -325,7 +344,14 @@
 
     <div class="create">
       Don't have an account?
-      <span onclick="openCreateAccount()">Create Account</span>
+
+      <button
+        class="create-link"
+        type="button"
+        onclick="openCreateAccount()"
+      >
+        Create Account
+      </button>
     </div>
 
   </div>
@@ -358,6 +384,7 @@
       class="input"
       type="text"
       placeholder="Username"
+      autocomplete="username"
     >
 
     <input
@@ -365,6 +392,7 @@
       class="input"
       type="email"
       placeholder="Email"
+      autocomplete="email"
     >
 
     <input
@@ -372,6 +400,7 @@
       class="input"
       type="password"
       placeholder="Password"
+      autocomplete="new-password"
     >
 
     <input
@@ -379,15 +408,26 @@
       class="input"
       type="password"
       placeholder="Confirm Password"
+      autocomplete="new-password"
     >
 
-    <button class="login-btn" onclick="createAccount()">
+    <button
+      class="login-btn"
+      type="button"
+      onclick="createAccount()"
+    >
       CREATE ACCOUNT
     </button>
 
     <div class="message">
       Already have an account?
-      <span onclick="backToLogin()">Login</span>
+
+      <button
+        type="button"
+        onclick="backToLogin()"
+      >
+        Login
+      </button>
     </div>
 
   </div>
@@ -399,53 +439,75 @@
 
   <script>
 
-    /* SPLASH → LOGIN */
+    /* =========================
+       SPLASH → LOGIN
+    ========================= */
 
     function openLogin() {
+
       document.getElementById("splash").style.display = "none";
       document.getElementById("register").style.display = "none";
       document.getElementById("login").style.display = "flex";
+
     }
 
 
-    /* LOGIN → SPLASH */
+    /* =========================
+       LOGIN → SPLASH
+    ========================= */
 
     function goBack() {
+
       document.getElementById("login").style.display = "none";
       document.getElementById("register").style.display = "none";
       document.getElementById("splash").style.display = "flex";
+
     }
 
 
-    /* LOGIN → CREATE ACCOUNT */
+    /* =========================
+       LOGIN → CREATE ACCOUNT
+    ========================= */
 
     function openCreateAccount() {
+
       document.getElementById("splash").style.display = "none";
       document.getElementById("login").style.display = "none";
       document.getElementById("register").style.display = "flex";
+
+      window.scrollTo(0, 0);
+
     }
 
 
-    /* CREATE ACCOUNT → LOGIN */
+    /* =========================
+       CREATE ACCOUNT → LOGIN
+    ========================= */
 
     function backToLogin() {
+
       document.getElementById("register").style.display = "none";
       document.getElementById("login").style.display = "flex";
+
     }
 
 
-    /* LOGIN BUTTON */
+    /* =========================
+       LOGIN
+    ========================= */
 
     function login() {
 
       const username =
-        document.getElementById("loginUsername").value;
+        document.getElementById("loginUsername").value.trim();
 
       const password =
         document.getElementById("loginPassword").value;
 
       if (username === "" || password === "") {
+
         alert("Please enter your username and password.");
+
         return;
       }
 
@@ -454,7 +516,9 @@
     }
 
 
-    /* CREATE ACCOUNT BUTTON */
+    /* =========================
+       CREATE ACCOUNT
+    ========================= */
 
     function createAccount() {
 
@@ -471,7 +535,7 @@
         document.getElementById("registerConfirm").value;
 
 
-      /* CHECK EMPTY FIELDS */
+      /* EMPTY FIELDS */
 
       if (
         username === "" ||
@@ -479,23 +543,39 @@
         password === "" ||
         confirmPassword === ""
       ) {
+
         alert("Please fill in all fields.");
+
         return;
       }
 
 
-      /* CHECK PASSWORD */
+      /* EMAIL CHECK */
+
+      if (!email.includes("@")) {
+
+        alert("Please enter a valid email address.");
+
+        return;
+      }
+
+
+      /* PASSWORD MATCH */
 
       if (password !== confirmPassword) {
+
         alert("Passwords do not match.");
+
         return;
       }
 
 
-      /* CHECK PASSWORD LENGTH */
+      /* PASSWORD LENGTH */
 
       if (password.length < 6) {
+
         alert("Password must be at least 6 characters.");
+
         return;
       }
 
@@ -506,7 +586,8 @@
         "Account form completed! 💜💙\n\n" +
         "Username: " + username +
         "\nEmail: " + email +
-        "\n\nDatabase connection will be added next."
+        "\n\nThis is still a prototype.\n" +
+        "Real account saving will be connected next."
       );
 
     }
